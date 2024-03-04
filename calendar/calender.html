@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      cursor: pointer;
+    }
+
+    .today {
+      background-color: #ffffcc;
+    }
+  </style>
+</head>
+<body>
+  <h2 id="month-name">Calendar</h2>
+  <table id="calendar">
+    <thead>
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+    </thead>
+    <tbody id="calendar-body">
+    </tbody>
+  </table>
+
+  <script>
+    const calendarBody = document.getElementById('calendar-body');
+    const monthNameElement = document.getElementById('month-name');
+
+    function createCalendar(year, month) {
+      calendarBody.innerHTML = '';
+
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const monthName = months[month];
+      monthNameElement.textContent = monthName;
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+
+      let date = new Date(firstDay);
+      while (date <= lastDay) {
+        const row = document.createElement('tr');
+        for (let i = 0; i < 7; i++) {
+          const cell = document.createElement('td');
+          if (date.getMonth() === month) {
+            cell.textContent = date.getDate();
+            if (date.toDateString() === new Date().toDateString()) {
+              cell.classList.add('today');
+            }
+          }
+          row.appendChild(cell);
+          date.setDate(date.getDate() + 1);
+        }
+        calendarBody.appendChild(row);
+      }
+    }
+
+    const now = new Date();
+    createCalendar(now.getFullYear(), now.getMonth());
+  </script>
+</body>
+</html>
