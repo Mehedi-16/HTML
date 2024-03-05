@@ -24,8 +24,7 @@ Explain how others can contribute to this repository.
 Specify the license for the HTML files in this repository.
 
 ## Authors
-- Your Name
-- Add more authors if necessary
+- Mehedi Hasan Mamun
 
 ## Acknowledgements
 Include acknowledgements or references to other projects or resources that inspired or helped your HTML files.
